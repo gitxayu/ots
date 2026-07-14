@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Online Taxi Service - Taxi Service in Ranchi</title>
+<title>Online Taxi Service — Ranchi Taxi &amp; Car Rental, 24/7</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   /* ========================================================
-     ONLINE TAXI SERVICE.
+     EDIT ME: swap these values for your own brand.
      ======================================================== */
   :root{
     --asphalt: #19191b;
@@ -51,9 +51,18 @@
   }
   .eyebrow::before{ content:''; width:22px; height:2px; background:var(--cab-yellow); display:inline-block; }
 
-  /* ---------- Focus visibility ---------- */
-  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{
     outline:2px solid var(--cab-yellow); outline-offset:3px;
+  }
+
+  /* ---------- Promo strip ---------- */
+  .promo{
+    background:var(--cab-yellow); color:var(--asphalt); font-family:var(--mono); font-size:13px;
+    text-align:center; padding:9px 24px; font-weight:700; position:relative;
+  }
+  .promo button{
+    position:absolute; right:16px; top:50%; transform:translateY(-50%); background:none; border:none;
+    color:var(--asphalt); font-size:16px; font-weight:700; line-height:1;
   }
 
   /* ---------- Header ---------- */
@@ -65,7 +74,7 @@
   .nav{ display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1120px; margin:0 auto; }
   .logo{ font-family:var(--display); font-size:22px; font-weight:600; letter-spacing:0.02em; display:flex; align-items:center; gap:8px; }
   .logo .dot{ width:9px; height:9px; border-radius:50%; background:var(--signal-green); box-shadow:0 0 8px var(--signal-green); }
-  .nav-links{ display:flex; gap:32px; font-size:14px; font-weight:500; }
+  .nav-links{ display:flex; gap:30px; font-size:14px; font-weight:500; }
   .nav-links a{ opacity:0.85; transition:opacity .15s; }
   .nav-links a:hover{ opacity:1; color:var(--cab-yellow); }
   .nav-cta{
@@ -75,7 +84,7 @@
   .nav-cta:hover{ background:var(--route); }
   .nav-toggle{ display:none; background:none; border:none; color:var(--route); font-size:24px; }
 
-  @media (max-width:820px){
+  @media (max-width:860px){
     .nav-links{ display:none; }
     .nav-toggle{ display:block; }
     .nav-links.open{
@@ -84,29 +93,13 @@
     }
   }
 
-  /* ---------- Route rail (structural motif, quiet) ---------- */
-  .route-rail{
-    position:absolute; left:24px; top:0; bottom:0; width:2px;
-    background-image:linear-gradient(var(--asphalt-3) 60%, transparent 40%);
-    background-size:2px 14px; background-repeat:repeat-y;
-    display:none;
-  }
-  @media (min-width:900px){ .has-rail{ padding-left:64px; } .has-rail .route-rail{ display:block; } }
-  .pin{
-    position:absolute; left:24px; top:92px; transform:translateX(-50%);
-    width:14px; height:14px; border-radius:50%; background:var(--cab-yellow);
-    box-shadow:0 0 0 4px var(--asphalt), 0 0 0 5px var(--asphalt-3);
-    display:none;
-  }
-  @media (min-width:900px){ .pin{ display:block; } }
-
   /* ---------- Hero ---------- */
-  .hero{ padding-top:72px; padding-bottom:72px; overflow:hidden; }
-  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center; }
+  .hero{ padding-top:64px; padding-bottom:64px; overflow:hidden; }
+  .hero-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center; }
   @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
-  .hero h1{ font-size:clamp(36px,5.4vw,58px); margin-bottom:20px; }
+  .hero h1{ font-size:clamp(34px,5vw,54px); margin-bottom:18px; }
   .hero h1 span{ color:var(--cab-yellow); }
-  .hero p.lede{ font-size:18px; color:var(--route-dim); max-width:46ch; margin-bottom:32px; }
+  .hero p.lede{ font-size:17px; color:var(--route-dim); max-width:46ch; margin-bottom:28px; }
   .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
   .btn{
     display:inline-flex; align-items:center; gap:10px; padding:14px 24px; border-radius:var(--radius);
@@ -118,49 +111,65 @@
   .btn-secondary{ background:transparent; border-color:var(--asphalt-3); color:var(--route); }
   .btn-secondary:hover{ border-color:var(--signal-green); color:var(--signal-green); }
 
-  .trust-row{ display:flex; gap:24px; margin-top:36px; flex-wrap:wrap; font-family:var(--mono); font-size:12.5px; color:var(--route-dim); }
+  .trust-row{ display:flex; gap:22px; margin-top:30px; flex-wrap:wrap; font-family:var(--mono); font-size:12.5px; color:var(--route-dim); }
   .trust-row span{ color:var(--signal-green); }
 
-  /* ---------- Meter (SIGNATURE ELEMENT) ---------- */
-  .meter{
+  /* ---------- Fare calculator (SIGNATURE ELEMENT) ---------- */
+  .calc{
     background:var(--asphalt-2); border:1px solid var(--asphalt-3); border-radius:8px;
-    padding:28px; box-shadow:0 24px 60px -24px rgba(0,0,0,0.6);
+    padding:26px; box-shadow:0 24px 60px -24px rgba(0,0,0,0.6);
   }
-  .meter-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
-  .meter-label{ font-family:var(--mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--route-dim); }
-  .meter-status{ display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:11px; color:var(--signal-green); }
-  .meter-status .led{ width:7px; height:7px; border-radius:50%; background:var(--signal-green); box-shadow:0 0 6px var(--signal-green); animation:pulse 1.6s ease-in-out infinite; }
+  .calc-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+  .calc-label{ font-family:var(--mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--route-dim); }
+  .calc-status{ display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:11px; color:var(--signal-green); }
+  .calc-status .led{ width:7px; height:7px; border-radius:50%; background:var(--signal-green); box-shadow:0 0 6px var(--signal-green); animation:pulse 1.6s ease-in-out infinite; }
   @keyframes pulse{ 0%,100%{ opacity:1;} 50%{ opacity:0.35;} }
 
-  .meter-display{
-    background:#0f0f10; border-radius:6px; padding:24px 20px; text-align:center; margin-bottom:18px;
+  .calc-field{ margin-bottom:16px; }
+  .calc-field label{ font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--route-dim); display:block; margin-bottom:8px; }
+  .calc-select{
+    width:100%; background:#0f0f10; border:1px solid var(--asphalt-3); border-radius:var(--radius);
+    padding:12px 14px; color:var(--route); font-family:var(--body); font-size:14px; appearance:none;
+  }
+  .calc-slider-row{ display:flex; align-items:center; gap:12px; }
+  .calc-slider-row input[type="range"]{ flex:1; accent-color:var(--cab-yellow); }
+  .calc-km{ font-family:var(--mono); font-size:14px; color:var(--cab-yellow); min-width:52px; text-align:right; }
+
+  .calc-display{
+    background:#0f0f10; border-radius:6px; padding:22px 20px; text-align:center; margin:18px 0;
     border:1px solid var(--asphalt-3);
   }
-  .meter-fare{ font-family:var(--mono); font-weight:700; font-size:44px; color:var(--cab-yellow); letter-spacing:0.02em; }
-  .meter-sub{ font-family:var(--mono); font-size:11.5px; color:var(--route-dim); margin-top:8px; }
-
-  .meter-rows{ display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
-  .meter-row{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:13px; color:var(--route-dim); }
-  .meter-row b{ color:var(--route); font-weight:400; }
-
-  .meter-replay{
-    width:100%; background:transparent; border:1px dashed var(--asphalt-3); color:var(--route-dim);
-    padding:10px; border-radius:var(--radius); font-family:var(--mono); font-size:12px;
-  }
-  .meter-replay:hover{ border-color:var(--cab-yellow); color:var(--cab-yellow); }
+  .calc-fare{ font-family:var(--mono); font-weight:700; font-size:42px; color:var(--cab-yellow); letter-spacing:0.02em; }
+  .calc-sub{ font-family:var(--mono); font-size:11px; color:var(--route-dim); margin-top:6px; }
+  .calc-note{ font-size:11.5px; color:var(--route-dim); text-align:center; }
 
   /* ---------- Section headings ---------- */
-  .section-head{ max-width:640px; margin-bottom:48px; }
+  .section-head{ max-width:640px; margin-bottom:44px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
   .section-head h2{ font-size:clamp(26px,3.4vw,36px); }
   .section-head p{ color:var(--route-dim); margin-top:14px; font-size:16px; }
 
-  /* ---------- Services (route stops) ---------- */
-  .services{ background:var(--asphalt-2); border-top:1px solid var(--asphalt-3); border-bottom:1px solid var(--asphalt-3); }
-  .service-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
-  @media (max-width:900px){ .service-grid{ grid-template-columns:repeat(2,1fr);} }
+  /* ---------- Fleet & pricing ---------- */
+  .fleet{ background:var(--asphalt-2); border-top:1px solid var(--asphalt-3); border-bottom:1px solid var(--asphalt-3); }
+  .fleet-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  @media (max-width:900px){ .fleet-grid{ grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .fleet-grid{ grid-template-columns:1fr;} }
+  .fleet-card{
+    background:var(--asphalt); border:1px solid var(--asphalt-3); border-radius:6px; padding:24px;
+    transition:border-color .15s, transform .15s;
+  }
+  .fleet-card:hover{ border-color:var(--cab-yellow); transform:translateY(-3px); }
+  .fleet-card h3{ font-size:16px; text-transform:none; letter-spacing:0; font-family:var(--body); font-weight:600; margin-bottom:4px; }
+  .fleet-card .seats{ font-size:12.5px; color:var(--route-dim); margin-bottom:16px; }
+  .fleet-rate{ font-family:var(--mono); font-size:26px; color:var(--cab-yellow); }
+  .fleet-rate small{ font-size:12px; color:var(--route-dim); font-weight:400; }
+
+  /* ---------- Services ---------- */
+  .service-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:820px){ .service-grid{ grid-template-columns:repeat(2,1fr);} }
   @media (max-width:560px){ .service-grid{ grid-template-columns:1fr;} }
   .service-card{
-    background:var(--asphalt); border:1px solid var(--asphalt-3); border-radius:6px; padding:24px;
+    background:var(--asphalt-2); border:1px solid var(--asphalt-3); border-radius:6px; padding:24px;
     transition:border-color .15s, transform .15s;
   }
   .service-card:hover{ border-color:var(--cab-yellow); transform:translateY(-3px); }
@@ -168,23 +177,43 @@
   .service-card h3{ font-size:17px; text-transform:none; letter-spacing:0; margin-bottom:8px; font-weight:600; font-family:var(--body); }
   .service-card p{ font-size:14px; color:var(--route-dim); }
 
+  /* ---------- Popular routes ---------- */
+  .routes{ background:var(--asphalt-2); border-top:1px solid var(--asphalt-3); border-bottom:1px solid var(--asphalt-3); }
+  .route-table{ width:100%; border-collapse:collapse; }
+  .route-table th{
+    text-align:left; font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--route-dim); padding:12px 14px; border-bottom:1px solid var(--asphalt-3);
+  }
+  .route-table td{ padding:16px 14px; border-bottom:1px solid var(--asphalt-3); font-size:14.5px; }
+  .route-table tr:last-child td{ border-bottom:none; }
+  .route-table .dist{ color:var(--route-dim); font-family:var(--mono); font-size:13px; }
+  .route-table .price{ color:var(--cab-yellow); font-family:var(--mono); font-weight:700; text-align:right; }
+  .route-table .book-link{ text-align:right; }
+  .route-table .book-link a{ font-size:13px; color:var(--signal-green); font-family:var(--mono); white-space:nowrap; }
+  .route-table .book-link a:hover{ text-decoration:underline; }
+  @media (max-width:640px){
+    .route-table thead{ display:none; }
+    .route-table, .route-table tbody, .route-table tr, .route-table td{ display:block; width:100%; }
+    .route-table tr{ padding:14px 0; border-bottom:1px solid var(--asphalt-3); }
+    .route-table td{ border:none; padding:3px 0; }
+    .route-table .price, .route-table .book-link{ text-align:left; }
+  }
+
   /* ---------- Why us ---------- */
   .why-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--asphalt-3); border:1px solid var(--asphalt-3); border-radius:6px; overflow:hidden; }
   @media (max-width:820px){ .why-grid{ grid-template-columns:repeat(2,1fr); } }
-  .why-item{ background:var(--asphalt); padding:28px 22px; }
+  .why-item{ background:var(--asphalt); padding:26px 22px; }
   .why-item h3{ font-size:15px; text-transform:none; letter-spacing:0; font-family:var(--body); font-weight:600; margin-bottom:8px; }
   .why-item p{ font-size:13.5px; color:var(--route-dim); }
   .why-item .mark{ font-family:var(--mono); color:var(--signal-green); font-size:13px; margin-bottom:10px; display:block; }
 
   /* ---------- Coverage ---------- */
-  .coverage{ background:var(--asphalt-2); border-top:1px solid var(--asphalt-3); border-bottom:1px solid var(--asphalt-3); }
-  .coverage-inner{ display:flex; justify-content:space-between; align-items:center; gap:32px; flex-wrap:wrap; }
-  .coverage h2{ font-size:clamp(24px,3vw,32px); max-width:520px; }
-  .coverage p{ color:var(--route-dim); margin-top:12px; max-width:44ch; }
-  .coverage-phone{
-    font-family:var(--mono); font-size:28px; color:var(--cab-yellow); font-weight:700; white-space:nowrap;
+  .coverage-inner{ display:flex; flex-direction:column; gap:22px; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    font-family:var(--mono); font-size:12.5px; padding:8px 14px; border:1px solid var(--asphalt-3);
+    border-radius:20px; color:var(--route-dim);
   }
-  .coverage-phone small{ display:block; font-size:11px; color:var(--route-dim); font-weight:400; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px; }
 
   /* ---------- Contact / booking ---------- */
   .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
@@ -207,7 +236,7 @@
   .field label{ font-size:12px; color:var(--route-dim); text-transform:uppercase; letter-spacing:0.08em; }
   .field input{
     background:#0f0f10; border:1px solid var(--asphalt-3); border-radius:var(--radius); padding:12px 14px;
-    color:var(--route); font-family:var(--body); font-size:14px;
+    color:var(--route); font-family:var(--body); font-size:14px; width:100%;
   }
   .field input::placeholder{ color:#5c5c5f; }
   .form-card .btn-primary{ width:100%; justify-content:center; border:none; margin-top:6px; }
@@ -224,17 +253,48 @@
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; }
   }
+
+  /* ---------- Floating side buttons ---------- */
+  .side-buttons{
+    position:fixed; right:20px; bottom:24px; z-index:60;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .side-btn{
+    width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:24px; box-shadow:0 10px 24px -8px rgba(0,0,0,0.6); border:1px solid var(--asphalt-3);
+    transition:transform .15s ease; position:relative;
+  }
+  .side-btn:hover{ transform:scale(1.08); }
+  .side-btn:active{ transform:scale(0.96); }
+  .side-btn.whatsapp{ background:var(--whatsapp-green); color:#110000; }
+  .side-btn.call{ background:var(--cab-yellow); color:var(--asphalt); }
+  .side-btn .tip{
+    position:absolute; right:68px; top:50%; transform:translateY(-50%); background:var(--asphalt-2); border:1px solid var(--asphalt-3);
+    color:var(--route); font-family:var(--mono); font-size:12px; padding:6px 10px; border-radius:var(--radius);
+    white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .15s ease;
+  }
+  .side-btn:hover .tip{ opacity:1; }
+  @media (max-width:560px){
+    .side-buttons{ right:14px; bottom:16px; gap:10px; }
+    .side-btn{ width:50px; height:50px; font-size:21px; }
+    .side-btn .tip{ display:none; }
+  }
 </style>
 </head>
 <body>
+
+<div class="promo" id="promoStrip">
+  First ride 10% off — use code FIRST10 at booking
+  <button id="promoClose" aria-label="Dismiss">×</button>
+</div>
 
 <header>
   <div class="nav">
     <div class="logo"><span class="dot"></span>Online Taxi Service</div>
     <nav class="nav-links" id="navLinks">
+      <a href="#fleet">Fleet &amp; pricing</a>
       <a href="#services">Services</a>
-      <a href="#why">Why us</a>
-      <a href="#coverage">Coverage</a>
+      <a href="#routes">Routes</a>
       <a href="#contact">Contact</a>
     </nav>
     <div style="display:flex; align-items:center; gap:14px;">
@@ -250,77 +310,167 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">24/7 dispatch · licensed drivers</p>
-        <h1>Book a cab in<br><span>under 60 seconds.</span></h1>
-        <p class="lede">City rides, airport transfers, and outstation car rental — with an upfront fare before you get in, not after.</p>
+        <p class="eyebrow">24/7 dispatch · Ranchi, Jharkhand</p>
+        <h1>Know your fare<br><span>before you book.</span></h1>
+        <p class="lede">Local rides, outstation trips, and airport transfers with government-verified drivers — pick your car below and see the price instantly.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="tel:+917979999433">Call now — +91 7979999433</a>
           <a class="btn btn-secondary" href="#contact">Book on WhatsApp</a>
         </div>
         <div class="trust-row">
           <div><span>●</span> Available now</div>
-          <div>4.9★ average rating</div>
-          <div>Fixed fares, no surge</div>
+          <div>5.0★ on Google</div>
+          <div>10,000+ rides completed</div>
         </div>
       </div>
 
-      <!-- SIGNATURE: the fare meter -->
-      <div class="meter">
-        <div class="meter-top">
-          <span class="meter-label">Fare estimator</span>
-          <span class="meter-status"><span class="led"></span>Live</span>
+      <!-- SIGNATURE: interactive fare calculator -->
+      <div class="calc">
+        <div class="calc-top">
+          <span class="calc-label">Fare calculator</span>
+          <span class="calc-status"><span class="led"></span>Live</span>
         </div>
-        <div class="meter-display">
-          <div class="meter-fare">₹<span id="meterFare">0</span></div>
-          <div class="meter-sub">estimated fare · 10km city ride</div>
+
+        <div class="calc-field">
+          <label for="vehicleSelect">Vehicle</label>
+          <select class="calc-select" id="vehicleSelect">
+            <option value="12" data-base="40">Hatchback — ₹12/km</option>
+            <option value="13" data-base="60">Sedan — ₹13/km</option>
+            <option value="15" data-base="80">SUV — ₹15/km</option>
+            <option value="16" data-base="100">MUV — ₹16/km</option>
+          </select>
         </div>
-        <div class="meter-rows">
-          <div class="meter-row"><span>Base fare</span><b>₹79</b></div>
-          <div class="meter-row"><span>Distance (10km or 1hr)</span><b>₹196</b></div>
-          <div class="meter-row"><span>Waiting / tolls</span><b>₹24</b></div>
+
+        <div class="calc-field">
+          <label for="kmRange">Distance</label>
+          <div class="calc-slider-row">
+            <input type="range" id="kmRange" min="20" max="2000" value="13">
+            <span class="calc-km" id="kmValue">13 km</span>
+          </div>
         </div>
-        <button class="meter-replay" id="meterReplay">↻ run estimate again</button>
+
+        <div class="calc-display">
+          <div class="calc-fare">₹<span id="calcFare">0</span></div>
+          <div class="calc-sub">estimated total fare</div>
+        </div>
+        <p class="calc-note">Actual fare may vary with tolls, waiting time and time of day.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- FLEET & PRICING -->
+  <section class="fleet" id="fleet">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Fleet &amp; pricing</p>
+        <h2>Every car, one flat rate per km</h2>
+        <p>No slabs, no negotiation — the rate you see is the rate you pay.</p>
+      </div>
+      <div class="fleet-grid">
+         <div class="fleet-card">
+          <h3>Hatchback</h3>
+          <div class="seats">5 seater · Wagon-R, Celerio</div>
+          <div class="fleet-rate">₹12<small>/km</small></div>
+        </div>
+        <div class="fleet-card">
+          <h3>Sedan</h3>
+          <div class="seats">4 seater · Dzire, Etios or similar</div>
+          <div class="fleet-rate">₹13<small>/km</small></div>
+        </div>
+        <div class="fleet-card">
+          <h3>SUV</h3>
+          <div class="seats">6 seater · Scorpio, Xylo or similar</div>
+          <div class="fleet-rate">₹15<small>/km</small></div>
+        </div>
+        <div class="fleet-card">
+          <h3>MUV</h3>
+          <div class="seats">7 seater · Ertiga, Innova</div>
+          <div class="fleet-rate">₹16<small>/km</small></div>
+        </div>
+       </div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section class="services" id="services">
-    <div class="wrap has-rail">
-      <div class="route-rail"></div>
-      <div class="pin"></div>
+  <section id="services">
+    <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">Where we take you</p>
-        <h2>One fleet, four ways to ride</h2>
-        <p>Pick what fits the trip — every option is booked the same simple way.</p>
+        <p class="eyebrow">What we run</p>
+        <h2>Five ways to book us</h2>
       </div>
       <div class="service-grid">
         <div class="service-card">
           <span class="service-num">01</span>
-          <h3>City rides</h3>
-          <p>Point-to-point trips across town, on the meter, day or night.</p>
+          <h3>Local rides</h3>
+          <p>Point-to-point or hourly packages around the city.</p>
         </div>
         <div class="service-card">
           <span class="service-num">02</span>
-          <h3>Airport transfers</h3>
-          <p>Flight-tracked pickups, so a delayed landing doesn't cost you a no-show.</p>
+          <h3>Outstation</h3>
+          <p>One-way or round trips to nearby cities, with a driver for the whole way.</p>
         </div>
         <div class="service-card">
           <span class="service-num">03</span>
-          <h3>Outstation &amp; rental</h3>
-          <p>One-way or round trips to other cities, with a driver for the whole way.</p>
+          <h3>Airport transfer</h3>
+          <p>Flight-tracked pickup and drop, fixed price, no surge.</p>
         </div>
         <div class="service-card">
           <span class="service-num">04</span>
-          <h3>Corporate &amp; hourly</h3>
-          <p>A car on call for the day — meetings, errands, or events.</p>
+          <h3>Corporate</h3>
+          <p>Monthly packages for teams that need a car on call.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">05</span>
+          <h3>Wedding cars</h3>
+          <p>Decorated premium cars for the big day, booked in advance.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- POPULAR ROUTES -->
+  <section class="routes" id="routes">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Popular outstation routes</p>
+        <h2>Fixed fares to nearby cities</h2>
+      </div>
+      <table class="route-table">
+        <thead>
+          <tr><th>Route</th><th>Distance</th><th class="price">Price</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ranchi to Bokaro</td><td class="dist">120 km</td><td class="price">₹1,800</td>
+            <td class="book-link"><a href="#contact">Book →</a></td>
+          </tr>
+          <tr>
+            <td>Ranchi to Hazaribagh</td><td class="dist">100 km</td><td class="price">₹1,700</td>
+            <td class="book-link"><a href="#contact">Book →</a></td>
+          </tr>
+          <tr>
+            <td>Ranchi to Jamshedpur</td><td class="dist">135 km</td><td class="price">₹2,200</td>
+            <td class="book-link"><a href="#contact">Book →</a></td>
+          </tr>
+          <tr>
+            <td>Ranchi to Patratu</td><td class="dist">50 km</td><td class="price">₹1,500</td>
+            <td class="book-link"><a href="#contact">Book →</a></td>
+          </tr>
+          <tr>
+            <td>Ranchi to Dhanbad</td><td class="dist">165 km</td><td class="price">₹2,800</td>
+            <td class="book-link"><a href="#contact">Book →</a></td>
+          </tr>
+          <tr>
+            <td>Ranchi to Deoghar</td><td class="dist">252 km</td><td class="price">₹4,900</td>
+            <td class="book-link"><a href="#contact">Book →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <!-- WHY US -->
-  <section id="why">
+  <section>
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Why riders choose us</p>
@@ -335,7 +485,7 @@
         <div class="why-item">
           <span class="mark">✓</span>
           <h3>Verified drivers</h3>
-          <p>Every driver is background-checked and trained before they're allowed on the app.</p>
+          <p>Every driver is government-verified and trained before they're on the road.</p>
         </div>
         <div class="why-item">
           <span class="mark">✓</span>
@@ -344,24 +494,28 @@
         </div>
         <div class="why-item">
           <span class="mark">✓</span>
-          <h3>Clean, sanitized cars</h3>
-          <p>Every vehicle is cleaned and inspected between shifts.</p>
+          <h3>GPS-tracked cars</h3>
+          <p>Every ride is tracked end to end, for you and for us.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- COVERAGE -->
-  <section class="coverage" id="coverage">
+  <section>
     <div class="wrap coverage-inner">
-      <div>
+      <div class="section-head" style="margin-bottom:0;">
         <p class="eyebrow">Service area</p>
         <h2>Serving Ranchi and nearby areas</h2>
-        <p>Replace this with your actual coverage — for example, neighborhoods, nearby towns, or a highway radius you serve for outstation trips.</p>
       </div>
-      <div class="coverage-phone">
-        <small>Dispatch line</small>
-        +91 7979999433
+      <div class="chip-row">
+        <span class="chip">Ranchi</span>
+        <span class="chip">Ramgarh</span>
+        <span class="chip">Hazaribagh</span>
+        <span class="chip">Dhanbad</span>
+        <span class="chip">Bokaro</span>
+        <span class="chip">Jamshedpur</span>
+        <span class="chip">+ all of Jharkhand</span>
       </div>
     </div>
   </section>
@@ -376,11 +530,11 @@
         <div class="contact-methods">
           <div class="contact-method">
             <span class="icon">☎</span>
-            <div><span>Call</span><b>+917979999433</b></div>
+            <div><span>Call</span><b>+91 7979999433</b></div>
           </div>
           <div class="contact-method">
             <span class="icon">✆</span>
-            <div><span>WhatsApp</span><b>+918229891111</b></div>
+            <div><span>WhatsApp</span><b>+91 8229891111</b></div>
           </div>
           <div class="contact-method">
             <span class="icon">@</span>
@@ -406,7 +560,7 @@
         </div>
         <div class="field">
           <label for="drop">Drop location</label>
-          <input id="drop" type="text" placeholder="e.g. Ranchi Airport" required>
+          <input id="drop" type="text" placeholder="e.g. City Airport" required>
         </div>
         <div class="form-row">
           <div class="field">
@@ -430,40 +584,55 @@
   <div class="wrap footer-inner">
     <div class="logo"><span class="dot"></span>Online Taxi Service</div>
     <div class="footer-links">
+      <a href="#fleet">Fleet &amp; pricing</a>
       <a href="#services">Services</a>
-      <a href="#why">Why us</a>
-      <a href="#coverage">Coverage</a>
+      <a href="#routes">Routes</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
-  <p class="copyright">© 2026 Online Taxi Service</p>
+  <p class="copyright">© 2026 Online Taxi Service.</p>
 </footer>
 
+<!-- Floating side buttons: always visible, WhatsApp + Call -->
+<div class="side-buttons">
+  <a class="side-btn whatsapp" href="https://wa.me/918229891111" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <span class="tip">WhatsApp us</span>
+    ✆
+  </a>
+  <a class="side-btn call" href="tel:+917979999433" aria-label="Call now">
+    <span class="tip">Call now</span>
+    ☎
+  </a>
+</div>
+
 <script>
+  // ---- Promo strip dismiss ----
+  document.getElementById('promoClose').addEventListener('click', function(){
+    document.getElementById('promoStrip').style.display = 'none';
+  });
+
   // ---- Mobile nav toggle ----
   document.getElementById('navToggle').addEventListener('click', function(){
     document.getElementById('navLinks').classList.toggle('open');
   });
 
-  // ---- Fare meter animation (signature element) ----
-  function runMeter(){
-    var el = document.getElementById('meterFare');
-    var target = 299;
-    var current = 0;
-    var duration = 1100;
-    var start = null;
-    function step(ts){
-      if(!start) start = ts;
-      var progress = Math.min((ts - start) / duration, 1);
-      current = Math.floor(progress * target);
-      el.textContent = current;
-      if(progress < 1){ requestAnimationFrame(step); }
-      else { el.textContent = target; }
-    }
-    requestAnimationFrame(step);
+  // ---- Fare calculator (signature element) ----
+  var vehicleSelect = document.getElementById('vehicleSelect');
+  var kmRange = document.getElementById('kmRange');
+  var kmValue = document.getElementById('kmValue');
+  var calcFare = document.getElementById('calcFare');
+
+  function updateFare(){
+    var perKm = parseFloat(vehicleSelect.value);
+    var base = parseFloat(vehicleSelect.options[vehicleSelect.selectedIndex].dataset.base);
+    var km = parseInt(kmRange.value, 10);
+    kmValue.textContent = km + ' km';
+    var fare = Math.round(base + (perKm * km));
+    calcFare.textContent = fare;
   }
-  window.addEventListener('load', runMeter);
-  document.getElementById('meterReplay').addEventListener('click', runMeter);
+  vehicleSelect.addEventListener('change', updateFare);
+  kmRange.addEventListener('input', updateFare);
+  window.addEventListener('load', updateFare);
 
   // ---- Booking form -> WhatsApp ----
   document.getElementById('bookingForm').addEventListener('submit', function(e){
@@ -475,6 +644,7 @@
     var date = document.getElementById('date').value;
     var time = document.getElementById('time').value;
 
+    // EDIT ME: replace with your real WhatsApp number, digits only, with country code
     var whatsappNumber = "+918229891111";
 
     var message = "New booking request:%0A" +
